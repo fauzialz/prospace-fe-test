@@ -2,10 +2,19 @@ import React from 'react'
 import './Company.css';
 import { FormGroup, Button, Grid, GridItem } from '../../../../styles/styles'
 import { validateCompany } from './validateCompany';
+import { createCompany } from '../../../store/company/companyAction';
+import { connect } from 'react-redux';
 
-export const CompanyForm = (props) => {
-  const { submitCompany } = props;
+const mapState = (state) => ({
+  companies: state.companies
+})
 
+const mapDispatch = {
+  createCompany
+}
+
+const CompanyForm = (props) => {
+  const { companies, createCompany } = props;
   const initialState = {
     name: '',
     address: '',
@@ -13,6 +22,7 @@ export const CompanyForm = (props) => {
     phoneCode: '',
     phoneNumber: ''
   }
+  
   const [loading, setLoading] = React.useState(false);
   const [values, setValues] = React.useState(initialState)
   const [errors, setErrors] = React.useState(initialState);
@@ -33,8 +43,19 @@ export const CompanyForm = (props) => {
     e.preventDefault();
     setLoading(true);
     
-    submitCompany(values);
-    
+    // submitCompany(values);
+    const data = {
+      id: `CMP${companies.length + 1}`,
+      name: values.name,
+      address: values.address,
+      revenue: values.revenue,
+      phone: {
+        code: values.phoneCode,
+        number: values.phoneNumber
+      }
+    }
+    createCompany(data);
+
     setErrors(initialState);
     setValues(initialState);
 
@@ -89,3 +110,5 @@ export const CompanyForm = (props) => {
     </div>
   )
 }
+
+export default connect(mapState, mapDispatch)(CompanyForm);

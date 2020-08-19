@@ -1,9 +1,19 @@
 import React from 'react'
 import { FormGroup, Button, Grid, GridItem } from '../../../../styles/styles'
 import { validateOffice } from './validateOffice';
+import { updateOffice } from '../../../store/company/companyAction';
+import { connect } from 'react-redux';
 
-export const OfficeForm = (props) => {
-  const { submitOffice, companies } = props;
+const mapState = (state) => ({
+  companies: state.companies
+})
+
+const mapDispatch = {
+  updateOffice
+}
+
+const OfficeForm = (props) => {
+  const { updateOffice, companies } = props;
   const initialState = {
     name: '',
     latitude: '',
@@ -31,7 +41,19 @@ export const OfficeForm = (props) => {
     e.preventDefault();
     setLoading(true);
     
-    submitOffice(values);
+    // submitOffice(values);
+    const getCompany = companies.list.find(item => item.id === values.company);
+    const data = {
+      id: `OFC${getCompany.offices.length + 1}`,
+      name: values.name,
+      location: {
+        latitude: values.latitude,
+        longitude: values.longitude
+      },
+      date: values.date
+    }
+    getCompany.offices.push(data);
+    updateOffice(getCompany);
     
     setErrors(initialState);
     setValues(initialState);
@@ -85,12 +107,14 @@ export const OfficeForm = (props) => {
         <FormGroup fullwidth style={{marginBottom: errors.company ? 0 : '16px'}}>
           <label>Company</label>
           <select className={`form-control ${errors.company ? 'error' : ''}`} name="company" onChange={handleChange} onBlur={handleBlur} value={values.company} >
-            <option>None</option>
             {
-              companies && companies.length > 0 ?
-              companies.map(item => (
-                <option key={item.id} value={item.id}>{item.name}</option>
-              ))
+              companies.list && companies.list.length > 0 ?
+              <React.Fragment>
+                <option>None</option>
+                {companies.list.map(item => (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                ))}
+              </React.Fragment>
               :
               <option>No Data</option>
             }
@@ -103,3 +127,5 @@ export const OfficeForm = (props) => {
     </div>
   )
 }
+
+export default connect(mapState, mapDispatch)(OfficeForm);

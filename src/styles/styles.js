@@ -49,11 +49,7 @@ export const GridItem = styled.div`
 `;
 
 export const Paper = styled.div`
-  padding: 12px;
-  // text-align: center;
-  
-  /* color: rgba(0, 0, 0, 0.87); */
-  // background-color: #424242;
+  padding: 12px;  
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
   /* Rounded */
@@ -101,6 +97,15 @@ export const Paper = styled.div`
       }
     }
   }}
+
+  ${props => props.hover && css`
+    &:hover {
+      background-color: rgba(0,0,0, .07);
+    }
+    & * {
+      cursor: pointer !important;
+    }
+  `}
 `;
 
 export const Divider = styled.hr`
