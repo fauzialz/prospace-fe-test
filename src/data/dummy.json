@@ -1,0 +1,43 @@
+[
+  {
+    "id": "CP1",
+    "name": "Google",
+    "address": "Jalan-jalan",
+    "revenue": "10000000",
+    "phone": {
+      "code": "021",
+      "number": "123571"
+    },
+    "offices": [
+      {
+        "id": "OFC1",
+        "name": "Cabang 1",
+        "location": {
+          "latitude": "-1388",
+          "longitude": "1736"
+        },
+        "date": "2020-08-13"
+      },
+      {
+        "id": "OFC2",
+        "name": "Cabang 2",
+        "location": {
+          "latitude": "5000",
+          "longitude": "-5839"
+        },
+        "date": "2018-07-20"
+      }
+    ]
+  },
+  {
+    "id": "CP2",
+    "name": "Facebook",
+    "address": "walk-walk men",
+    "revenue": "999999999",
+    "phone": {
+      "code": "022",
+      "number": "987654"
+    },
+    "offices": []
+  }
+]
