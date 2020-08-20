@@ -10,3 +10,17 @@ this app using data dummy
 to running this app
   1. npm install (to install dependencies)
   2. npm start
+
+when we running this app, it's access page with route /
+the page is showing companies data, company form and offices form
+
+when there's no data on companies, it shows some message 'there is no companies created yet'
+
+to create company we can using company form, submit will clickable when all of the data is filled
+same goes to office form but for select company we need company data first if not it's always none 
+so we can't create office
+
+to delete company we could click X on company card, then pop up will show and if we click delete then the data will be deleted
+same goes for delete offices data
+
+to see offices data we could go to detail page by clicking company card, on detail page there's button to back to companies page
