@@ -1,5 +1,4 @@
 import React from 'react'
-import './Company.css';
 import { FormGroup, Button, Grid, GridItem } from '../../../../styles/styles'
 import { validateCompany } from './validateCompany';
 import { createCompany } from '../../../store/company/companyAction';
