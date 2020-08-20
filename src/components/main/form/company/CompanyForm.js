@@ -4,17 +4,19 @@ import { FormGroup, Button, Grid, GridItem } from '../../../../styles/styles'
 import { validateCompany } from './validateCompany';
 import { createCompany } from '../../../store/company/companyAction';
 import { connect } from 'react-redux';
+import { setNotification } from '../../../store/global/globalAction';
 
 const mapState = (state) => ({
   companies: state.companies
 })
 
 const mapDispatch = {
-  createCompany
+  createCompany,
+  setNotification
 }
 
 const CompanyForm = (props) => {
-  const { companies, createCompany } = props;
+  const { companies, createCompany, setNotification } = props;
   const initialState = {
     name: '',
     address: '',
@@ -31,6 +33,13 @@ const CompanyForm = (props) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
+    })
+  }
+
+  const handleChangeNumber = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value.replace(/\D/,'')
     })
   }
 
@@ -60,6 +69,8 @@ const CompanyForm = (props) => {
     setValues(initialState);
 
     setLoading(false);
+    
+    setNotification('New company has been created!')
   }
 
   const isValid = () => {
@@ -90,17 +101,17 @@ const CompanyForm = (props) => {
         </FormGroup>
         <FormGroup fullwidth style={{marginBottom: errors.revenue ? 0 : '16px'}}>
           <label>Revenue</label>
-          <input className={`form-control ${errors.revenue ? 'error' : ''}`} name="revenue" placeholder="revenue" onChange={handleChange} onBlur={handleBlur} value={values.revenue} />
+          <input className={`form-control ${errors.revenue ? 'error' : ''}`} type="text" name="revenue" placeholder="revenue" onChange={handleChangeNumber} onBlur={handleBlur} value={values.revenue} />
           <small>{errors.revenue ? errors.revenue : ''}</small>
         </FormGroup>
         <FormGroup fullwidth style={{marginBottom: errors.phoneCode || errors.phoneNumber ? 0 : '16px'}}>
           <label>Phone No</label>
           <Grid container spacing={1}>
             <GridItem sm={3}>
-              <input className={`form-control ${errors.phoneCode ? 'error' : ''}`} type="number" name="phoneCode" placeholder="code" onChange={handleChange} onBlur={handleBlur} value={values.phoneCode} />
+              <input className={`form-control ${errors.phoneCode ? 'error' : ''}`} type="text" name="phoneCode" placeholder="code" onChange={handleChangeNumber} onBlur={handleBlur} value={values.phoneCode} />
             </GridItem>
             <GridItem sm={9}>
-              <input className={`form-control ${errors.phoneNumber ? 'error' : ''}`} type="number" name="phoneNumber" placeholder="number" onChange={handleChange} onBlur={handleBlur} value={values.phoneNumber} />
+              <input className={`form-control ${errors.phoneNumber ? 'error' : ''}`} type="text" name="phoneNumber" placeholder="number" onChange={handleChangeNumber} onBlur={handleBlur} value={values.phoneNumber} />
             </GridItem>
           </Grid>
           <small>{errors.phoneCode && errors.phoneNumber ? 'phone code & number is required' : (errors.phoneCode ? 'phone code is required' : (errors.phoneNumber ? 'phone number is required' : ''))}</small>

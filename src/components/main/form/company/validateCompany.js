@@ -14,6 +14,5 @@ export const validateCompany = (values, blurField, err) => {
   if (values[blurField]) {
     errors[blurField] = ''
   }
-  
   return errors;
 }

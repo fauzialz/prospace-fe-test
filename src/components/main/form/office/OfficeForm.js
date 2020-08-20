@@ -3,13 +3,15 @@ import { FormGroup, Button, Grid, GridItem } from '../../../../styles/styles'
 import { validateOffice } from './validateOffice';
 import { updateOffice } from '../../../store/company/companyAction';
 import { connect } from 'react-redux';
+import { setNotification } from '../../../store/global/globalAction';
 
 const mapState = (state) => ({
   companies: state.companies
 })
 
 const mapDispatch = {
-  updateOffice
+  updateOffice,
+  setNotification
 }
 
 const OfficeForm = (props) => {
@@ -29,6 +31,13 @@ const OfficeForm = (props) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
+    })
+  }
+
+  const handleChangeNumber = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value.replace(/\D/,'')
     })
   }
 
@@ -59,6 +68,8 @@ const OfficeForm = (props) => {
     setValues(initialState);
 
     setLoading(false);
+
+    setNotification('New office has been created!')
   }
 
 
@@ -89,10 +100,10 @@ const OfficeForm = (props) => {
           <label>Location</label>
           <Grid container spacing={1}>
             <GridItem sm={6}>
-              <input className={`form-control ${errors.latitude ? 'error' : ''}`} name="latitude" placeholder="latitude" onChange={handleChange} onBlur={handleBlur} value={values.latitude} />
+              <input className={`form-control ${errors.latitude ? 'error' : ''}`} type="text" name="latitude" placeholder="latitude" onChange={handleChangeNumber} onBlur={handleBlur} value={values.latitude} />
             </GridItem>
             <GridItem sm={6}>
-              <input className={`form-control ${errors.longitude ? 'error' : ''}`} name="longitude" placeholder="longitude" onChange={handleChange} onBlur={handleBlur} value={values.longitude} />
+              <input className={`form-control ${errors.longitude ? 'error' : ''}`} type="text" name="longitude" placeholder="longitude" onChange={handleChangeNumber} onBlur={handleBlur} value={values.longitude} />
             </GridItem>
           </Grid>
           <small>{errors.latitude && errors.longitude ? 'latitude & longitude is required' : (errors.latitude ? 'latitude is required' : (errors.longitude ? 'longitude is required' : ''))}</small>
@@ -100,7 +111,7 @@ const OfficeForm = (props) => {
 
         <FormGroup fullwidth style={{marginBottom: errors.date ? 0 : '16px'}}>
           <label>Office Start Date</label>
-          <input type="date" className={`form-control ${errors.date ? 'error' : ''}`} name="date" placeholder="date" onChange={handleChange} onBlur={handleBlur} value={values.date} />
+          <input type="date" data-date="" data-date-format="MM/DD/YYYY" className={`form-control ${errors.date ? 'error' : ''}`} name="date" placeholder="date" onChange={handleChange} onBlur={handleBlur} value={values.date} />
           <small>{errors.date ? errors.date : ''}</small>
         </FormGroup>
 

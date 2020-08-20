@@ -206,10 +206,11 @@ export const FormGroup = styled.div`
   & > label {
     display: inline-block;
     // margin-bottom: .5rem;
+    
+    &:after {
+      content: ' :'
+    }
     ${props => !props.readonly && css`    
-      &:after {
-        content: ' :'
-      }
     `}
   }
 
@@ -366,5 +367,57 @@ export const Modal = styled.div`
     & > * {
       margin: .25rem;
     }
+  }
+`;
+
+export const Snackbar = styled.div`
+  display: flex;
+  z-index: 1200;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 600px) {
+    top: 25px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  & .content {
+    opacity: 0;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    padding: 6px 16px;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    font-size: 0.87rem;
+    align-items: center;
+    line-height: 1.43;
+    border-radius: 4px;
+    letter-spacing: 0.01071em;
+    background-color: #007bff;
+    box-shadow: 
+    0px 2px 1px -1px rgba(0,0,0,.2), 
+    0px 1px 1px 0px rgba(0,0,0,.14), 
+    0px 1px 3px 0px rgba(0,0,0,.12);
+
+    @media (min-width: 600px) {
+      flex-grow: initial;
+      min-width: 288px;
+    }
+  }
+
+  & .show {
+    opacity: 1;
+    transform-box: none;
+    transition: all .4s ease-out;  
+  }
+
+  & .message {
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #fff;
+    
   }
 `;

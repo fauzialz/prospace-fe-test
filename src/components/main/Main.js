@@ -1,90 +1,43 @@
 import React from 'react'
-import { Grid, GridItem, Paper, Divider } from '../../styles/styles'
-import CompanyForm from './form/company/CompanyForm'
-import OfficeForm from './form/office/OfficeForm'
-import Companies from './list/company/Companies'
+import { Grid, GridItem, Paper, Snackbar } from '../../styles/styles'
+import Companies from './list/Companies'
 import { loadCompanies } from '../store/company/companyAction'
 import { connect } from 'react-redux'
+import { Switch, Route } from 'react-router-dom';
+import Company from './detail/Company'
 
 const mapState = (state) => ({
-  companies: state.companies
+  notification: state.global.notification
 })
 
 const mapDispatch = {
   loadCompanies,
-  // createCompany,
-  // deleteCompany,
-  // updateOffice
 }
 
 const Main = (props) => {
-  const { loadCompanies } = props;
+  const { loadCompanies, notification } = props;
   React.useEffect(() => {
     loadCompanies();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const [companies, setCompanies] = React.useState(Data);
-  // const submitCompany = (value) => {
-  //   const { name, address, revenue, phoneCode, phoneNumber } = value;
-  //   const data = {
-  //     id: `CMP${companies.length + 1}`,
-  //     name,
-  //     address,
-  //     revenue,
-  //     phone: {
-  //       code: phoneCode,
-  //       number: phoneNumber
-  //     }
-  //   }
-  //   setCompanies([...companies, data])
-  //   createCompany(data);
-  // }
-
-  // const submitOffice = (value) => {
-  //   const findCompany = companies.find(item => item.id === value.company);
-  //   const data = {
-  //     id: `OFC${findCompany.offices.length + 1}`,
-  //     name: value.name,
-  //     location: {
-  //       latitude: value.latitude,
-  //       longitude: value.longitude
-  //     },
-  //     date: value.date
-  //   }
-  //   findCompany.offices.push(data);
-  //   setCompanies(
-  //     companies.map(item => (item.id === value.company ? findCompany : item))
-  //   )
-  //   updateOffice(findCompany);
-  // }
-
-  // const deleteCompany = (id) => {
-  //   const filterData = companies.filter(item => item.id !== id);
-  //   setCompanies(filterData);
-  // }
-
   return (
     <Grid container style={{justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
       <GridItem sm={12} md={8} lg={6}>
         <Paper style={{minHeight: '95vh'}} elevation={3}>
-          <Grid container spacing={2}>
-            <GridItem sm={12} md={6}>
-              {/* <CompanyForm {...{submitCompany}} /> */}
-              <CompanyForm />
-            </GridItem>
-            <GridItem sm={12} md={6}>
-              {/* <OfficeForm {...{companies, submitOffice}} /> */}
-              <OfficeForm />
-            </GridItem>
-          </Grid>
-          <Divider middle style={{marginTop: '24px'}} />
-          <div style={{marginTop: '16px'}}>
-            {/* <Companies {...{companies, deleteCompany}} /> */}
-            <Companies />
-          </div>
+          <Switch>
+            <Route path="/:id" component={Company} />
+            <Route path="/" component={Companies} />
+          </Switch>
         </Paper>
       </GridItem>
+      <Snackbar>
+        <div className={`content ${notification.show ? 'show' : ''}`}>
+          <div className="message">
+            {notification.message}
+          </div>
+        </div>
+      </Snackbar>
     </Grid>
   )
 }

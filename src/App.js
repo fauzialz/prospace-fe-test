@@ -3,13 +3,14 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { rootStore } from './root/rooStore';
 import Main from './components/main/Main';
-// import Playground from './playground/Playground';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = (props) => {
   return (
     <Provider store={rootStore}>
-      {/* <Playground /> */}
-      <Main />
+      <Router>
+        <Main />
+      </Router>
     </Provider>    
   );
 }
