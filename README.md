@@ -24,3 +24,8 @@ to delete company we could click X on company card, then pop up will show and if
 same goes for delete offices data
 
 to see offices data we could go to detail page by clicking company card, on detail page there's button to back to companies page
+
+
+
+Not much I can explain for this, but that's it
+Thanks
