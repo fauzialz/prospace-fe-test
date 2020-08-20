@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, GridItem, Divider } from '../../../styles/styles'
+import { GridItem, Divider, Paper } from '../../../styles/styles'
 import CompanyForm from '../form/company/CompanyForm'
 import OfficeForm from '../form/office/OfficeForm'
 import CompanyList from './CompanyList'
@@ -15,18 +15,18 @@ const mapDispatch = {
 const Companies = (props) => {
   return (
     <React.Fragment>
-      <Grid container spacing={2}>
-        <GridItem sm={12} md={6}>
+      <GridItem sm={12} md={3} lg={3}>
+        <Paper style={{height: '95vh', overflowY: 'auto'}} elevation={3}>
           <CompanyForm />
-        </GridItem>
-        <GridItem sm={12} md={6}>
+          <Divider style={{marginTop: '16px', marginBottom: '12px'}} />
           <OfficeForm />
-        </GridItem>
-      </Grid>
-      <Divider middle style={{marginTop: '24px'}} />
-      <div style={{marginTop: '16px'}}>
-        <CompanyList />
-      </div>
+        </Paper>
+      </GridItem>
+      <GridItem sm={12} md={8} lg={6}>
+        <Paper style={{height: '95vh', overflowY: 'auto'}} elevation={3}>
+          <CompanyList />
+        </Paper>
+      </GridItem>
     </React.Fragment>
   )
 }

@@ -52,7 +52,7 @@ const CompanyList = (props) => {
                       <h3>
                         {item.name}
                       </h3>
-                      <CloseButton onClick={() => openModalDel(item.id)}>X</CloseButton>
+                      <CloseButton onClick={(e) => {e.stopPropagation(); openModalDel(item.id);}}>X</CloseButton>
                     </div>
                     <Divider />
                     <div style={{marginTop: '24px'}}>

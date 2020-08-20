@@ -10,7 +10,7 @@ const GridContainer = css`
 export const Grid = styled.div`
   ${props => props.container && GridContainer}
   ${props => props.spacing && css`
-    width: calc(100% + ${8 * props.spacing}px);
+    // width: calc(100% + ${8 * props.spacing}px);
     margin: ${-4 * props.spacing}px;
   `}
   & > * {

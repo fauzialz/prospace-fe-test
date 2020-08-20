@@ -2,42 +2,63 @@
   {
     "id": "CP1",
     "name": "Google",
-    "address": "Jalan-jalan",
-    "revenue": "10000000",
+    "address": "1600 Amphitheatre Parkway Mountain View, CA 94043 United States",
+    "revenue": "99999999",
     "phone": {
-      "code": "021",
+      "code": "190",
       "number": "123571"
     },
     "offices": [
       {
         "id": "OFC1",
-        "name": "Cabang 1",
+        "name": "Office Number 1",
         "location": {
-          "latitude": "-1388",
+          "latitude": "1388",
           "longitude": "1736"
         },
         "date": "2020-08-13"
-      },
-      {
-        "id": "OFC2",
-        "name": "Cabang 2",
-        "location": {
-          "latitude": "5000",
-          "longitude": "-5839"
-        },
-        "date": "2018-07-20"
       }
     ]
   },
   {
     "id": "CP2",
-    "name": "Facebook",
-    "address": "walk-walk men",
+    "name": "Amazon",
+    "address": "410 Terry Ave N. Seattle WA 98109",
     "revenue": "999999999",
     "phone": {
-      "code": "022",
-      "number": "987654"
+      "code": "206",
+      "number": "266-1000"
     },
     "offices": []
+  },
+  {
+    "id": "CP1",
+    "name": "Amazon",
+    "address": "969 West Wen Yi",
+    "revenue": "99999999",
+    "phone": {
+      "code": "86",
+      "number": "571-8502-2088"
+    },
+    "offices": [
+      {
+        "id": "OFC1",
+        "name": "Hangzhou Binjiang Campus",
+        "location": {
+          "latitude": "103.12",
+          "longitude": "20.44"
+        },
+        "date": "2017-07-13"
+      },
+      {
+        "id": "OFC2",
+        "name": "Taipei City Office",
+        "location": {
+          "latitude": "103.12",
+          "longitude": "20.44"
+        },
+        "date": "2015-05-20"
+      }
+    ]
   }
 ]

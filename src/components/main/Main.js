@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, GridItem, Paper, Snackbar } from '../../styles/styles'
+import { Grid, Snackbar } from '../../styles/styles'
 import Companies from './list/Companies'
 import { loadCompanies } from '../store/company/companyAction'
 import { connect } from 'react-redux'
@@ -22,15 +22,11 @@ const Main = (props) => {
   }, [])
 
   return (
-    <Grid container style={{justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-      <GridItem sm={12} md={8} lg={6}>
-        <Paper style={{minHeight: '95vh'}} elevation={3}>
-          <Switch>
-            <Route path="/:id" component={Company} />
-            <Route path="/" component={Companies} />
-          </Switch>
-        </Paper>
-      </GridItem>
+    <Grid container spacing={2} style={{justifyContent: 'center', height: '100vh'}}>
+      <Switch>
+        <Route path="/:id" component={Company} />
+        <Route path="/" component={Companies} />
+      </Switch>
       <Snackbar>
         <div className={`content ${notification.show ? 'show' : ''}`}>
           <div className="message">

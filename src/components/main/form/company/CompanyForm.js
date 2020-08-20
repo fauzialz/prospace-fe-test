@@ -84,7 +84,7 @@ const CompanyForm = (props) => {
   }
 
   return (
-    <div className="separator" style={{padding: '0 16px'}}>
+    <div style={{padding: '0 16px'}}>
       <h3>
         Company Form
       </h3>
